@@ -22,7 +22,6 @@ export async function SearchPictures(evt) {
     const markup = makePhotoList(result.hits)
     listPhoto.insertAdjacentHTML("beforeend", markup)
     if (photoAPI.TOTAL_PAGES === photoAPI.PAGE - 1){
-      console.log('777')
       return
     }
     loadMoreBtn.removeAttribute('style');
@@ -33,19 +32,20 @@ export async function SearchPictures(evt) {
 
 
   export async function loadMorePhoto(){
-    loadMoreBtn.style.display = 'none';
+    
     try {
         const result = await photoAPI.searchPhoto();
         const markup = makePhotoList(result.hits)
         listPhoto.insertAdjacentHTML("beforeend", markup)
         if (photoAPI.TOTAL_PAGES === photoAPI.PAGE - 1){
-          console.log('777')
+          loadMoreBtn.style.display = 'flex';
           return
         }
-        if (PhotoApi.PAGE >= PhotoApi.TOTAL_PAGES) {
+        if (photoAPI.PAGE >= photoAPI.TOTAL_PAGES) {
           Notiflix.Notify.warning(
             "We're sorry, but you've reached the end of search results."
           );
+          loadMoreBtn.style.display = 'none';
     }
   }
     catch(error){
