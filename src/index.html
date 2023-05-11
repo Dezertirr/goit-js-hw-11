@@ -10,19 +10,20 @@
   <body>
     <form class="search-form" id="search-form">
       <input
+      class="search-input"
         type="text"
         name="searchQuery"
         autocomplete="off"
         placeholder="Search images..."
         id="search-photo-input"
       />
-      <button type="button" id="search-photo-button">Search</button>
+      <button type="submit" id="search-photo-button" class="search-btn">Search</button>
     </form>
 
-    <ul class="list-photo">
+    <div class="gallery">
 
-    </ul>
-    <button type="button" id="load-more-btn">Load More</button>
+    </div>
+    <button type="button" id="load-more-btn" class="load-more-button">Load More</button>
 
     <script src="./index.js" type="module"></script>
   </body>

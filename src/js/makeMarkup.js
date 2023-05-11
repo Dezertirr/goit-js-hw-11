@@ -1,25 +1,28 @@
+import {listPhoto} from '../index.js'
+
 export function makePhotoList(data){
     const photoList = data.map ((result) => {
-        return `<li class="list-photo-item"> <img src="${result.webformatURL}" alt="${result.tags}" loading='lazy'/>
-        <ul class="statistics-list">
-        <li>
+        return `<div class="list-photo-item"> <img src="${result.webformatURL}" alt="${result.tags}" width=360 loading='lazy'/>
+        <div class="statistics-list">
+        <p>
         <p>Likes:</p><strong>${result.likes}</strong>
-        </li>
-        <li>
+        </p>
+        <p>
         <p>Views:</p><strong>${result.views}</strong>
-        </li>
-        <li>
+        </p>
+        <p>
         <p>Comments:</p><strong>${result.comments}</strong>
-        </li>
-        <li>
+        </p>
+        <p>
         <p>Downloads:</p><strong>${result.downloads}</strong>
-        </li>
+        </div>
          </ul>
-          </li>`;
+          </div>`;
     }).join('')
+    return photoList
 }
 
 export function createListPhoto (hits){
-    const markup = markupHits(hits);
+    const markup = makePhotoList(hits);
     listPhoto.insertAdjacentHTML('beforeend', markup);
 }
