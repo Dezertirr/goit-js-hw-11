@@ -42,7 +42,7 @@ export async function SearchPictures(evt) {
           console.log('777')
           return
         }
-        if (photoApi.PAGE >= photoApi.TOTAL_PAGES) {
+        if (PhotoApi.PAGE >= PhotoApi.TOTAL_PAGES) {
           Notiflix.Notify.warning(
             "We're sorry, but you've reached the end of search results."
           );
