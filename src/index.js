@@ -3,7 +3,7 @@ import axios from "axios";
 import lodash from "lodash";
 import './css/styles.css';
 import './js/PhotoAPI.js';
-import { SearchPhoto } from "./js/SearchPhoto.js";
+import { SearchPhoto } from "./js/SearchPhoto";
 
 
 
