@@ -25,6 +25,12 @@ export async function SearchPictures(evt) {
       return
     }
     loadMoreBtn.removeAttribute('style');
+    if (photoAPI.PAGE >= photoAPI.TOTAL_PAGES) {
+      Notiflix.Notify.warning(
+        "We're sorry, but you've reached the end of search results."
+      );
+      loadMoreBtn.style.display = 'none';
+}
   }catch {
     Notiflix.Notify.failure(`Sorry, this invalid request`)
   }
@@ -48,6 +54,7 @@ export async function SearchPictures(evt) {
           loadMoreBtn.style.display = 'none';
     }
   }
+
     catch(error){
       console.log(error);
       Notiflix.Notify.failure(`Oops, Something went wrong!`)

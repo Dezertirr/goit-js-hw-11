@@ -4,7 +4,7 @@ import axios from 'axios'
 export class PhotoAPI {
     #BASE_URL = `https://pixabay.com/api/`;
     #KEY = `36257865-655e5ef0d461eea0383acd722`;
-    #PER_PAGE = 40;
+    #PER_PAGE = 3;
     #IMAGE_TYPE = 'photo';
     #ORIENTATION = 'horizontal';
     #SAFESEARCH = 'true';
