@@ -25,7 +25,7 @@ export async function SearchPictures(evt) {
       return
     }
     loadMoreBtn.removeAttribute('style');
-    if (photoAPI.PAGE >= photoAPI.TOTAL_PAGES) {
+    if (photoAPI.PAGE === photoAPI.TOTAL_PAGES) {
       Notiflix.Notify.warning(
         "We're sorry, but you've reached the end of search results."
       );
@@ -47,7 +47,7 @@ export async function SearchPictures(evt) {
           loadMoreBtn.style.display = 'flex';
           return
         }
-        if (photoAPI.PAGE >= photoAPI.TOTAL_PAGES) {
+        if (photoAPI.PAGE === photoAPI.TOTAL_PAGES) {
           Notiflix.Notify.warning(
             "We're sorry, but you've reached the end of search results."
           );
