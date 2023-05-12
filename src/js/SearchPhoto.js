@@ -15,23 +15,32 @@ export async function SearchPictures(evt) {
   if (!photoAPI.QUERY) return;
   try{
     const result = await photoAPI.searchPhoto()
+    const markup = makePhotoList(result.hits)
+    listPhoto.insertAdjacentHTML("beforeend", markup)
+
     if(result.hits.length === 0){
       Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
       return;
     }
-    const markup = makePhotoList(result.hits)
-    listPhoto.insertAdjacentHTML("beforeend", markup)
-    if (photoAPI.TOTAL_PAGES === photoAPI.PAGE - 1){
-      return
-    }
-    loadMoreBtn.removeAttribute('style');
-    if (photoAPI.PAGE === photoAPI.TOTAL_PAGES) {
+
+    if (result.hits.length < photoAPI.PerPage) {
       Notiflix.Notify.warning(
         "We're sorry, but you've reached the end of search results."
       );
       loadMoreBtn.style.display = 'none';
+      return;
 }
-  }catch {
+
+
+
+
+    if (photoAPI.TOTAL_PAGES === photoAPI.PAGE - 1){
+      return
+    }
+
+    loadMoreBtn.removeAttribute('style');
+
+  } catch {
     Notiflix.Notify.failure(`Sorry, this invalid request`)
   }
 }
@@ -47,14 +56,13 @@ export async function SearchPictures(evt) {
           loadMoreBtn.style.display = 'flex';
           return
         }
-        if (photoAPI.PAGE === photoAPI.TOTAL_PAGES) {
+        if (photoAPI.PAGE >= photoAPI.TOTAL_PAGES) {
           Notiflix.Notify.warning(
             "We're sorry, but you've reached the end of search results."
           );
           loadMoreBtn.style.display = 'none';
     }
   }
-
     catch(error){
       console.log(error);
       Notiflix.Notify.failure(`Oops, Something went wrong!`)
